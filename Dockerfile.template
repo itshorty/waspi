@@ -4,29 +4,24 @@ FROM resin/%%RESIN_MACHINE_NAME%%-openjdk:latest
 # Set the maintainer
 MAINTAINER  Florian Huber <florian.huber@itshorty.at>
 
+#
+RUN mkdir -p /usr/src/app/
+
 # Set the working directory
 WORKDIR /usr/src/app
 
-# We have split up the resin-wifi-connect and Display-O-Tron HAT configuration to make clear
-# the different parts needed. In your dockerfile you should combine these steps to reduce
-# the number of layers.
+ENV INITSYSTEM on
 
-# -- Start of resin-wifi-connect section -- #
+RUN apt-get update \
+    && apt-get install -y dnsmasq \
+        wget \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl https://api.github.com/repos/majorz/resin-wifi-connect/releases/latest -s \
-    | grep -hoP 'https://.*%%RESIN_ARCH%%.tar.gz*' \
+    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
     | xargs -n1 curl -Ls \
-	| tar -xvz -C /usr/src/app/
+    | tar -xvz -C /usr/src/app/
 
-# -- End of resin-wifi-connect section -- #
-
-# -- Start of Display-O-Tron HAT section -- #
-
-RUN apt-get update && apt-get install -yq --no-install-recommends \
-      wget &&\
-      apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# -- End of Display-O-Tron HAT section -- #
 
 # Copy everything into the container
 COPY . ./
