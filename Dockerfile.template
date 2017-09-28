@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 # -- Start of resin-wifi-connect section -- #
 
 RUN curl https://api.github.com/repos/majorz/resin-wifi-connect/releases/latest -s \
-    | grep -hoP 'https://%%RESIN_ARCH%%.tar.gz*' \
+    | grep -hoP 'https://.*%%RESIN_ARCH%%.tar.gz*' \
     | xargs -n1 curl -Ls \
 	| tar -xvz -C /usr/src/app/
 
