@@ -52,3 +52,6 @@ hs_err_pid*
 # Eclipse .settings
 .settings/
 /target/
+
+# Idea settings
+.idea/
