@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     iw \
     libdbus-1-dev \
     libexpat-dev \
+    make \ 
     rfkill && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
