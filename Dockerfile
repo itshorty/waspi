@@ -1,5 +1,4 @@
-
-FROM resin/%%RESIN_MACHINE_NAME%%-openjdk:slim 
+FROM resin/%%RESIN_MACHINE_NAME%%-openjdk
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
