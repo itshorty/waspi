@@ -24,7 +24,9 @@ RUN curl https://api.github.com/repos/majorz/resin-wifi-connect/releases/latest 
 
 
 # Copy everything into the container
-COPY . ./
+COPY start ./
+
+COPY target/waspi-0.0.1-SNAPSHOT.jar ./
 
 # Start application
 CMD ["bash", "start.sh"]

@@ -16,7 +16,5 @@ fi
 
 # Start your application logic here, after a connection is setup
 while true; do
-	sleep 100
-	echo Downloading itshorty.at
-	wget -O - itshorty.at
+    java -jar waspi-0.0.1-SNAPSHOT.jar
 done
