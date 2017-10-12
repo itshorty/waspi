@@ -8,7 +8,6 @@
 	<packaging>jar</packaging>
 
 	<name>waspi</name>
-	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,7 +65,22 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<profiles>
+		<profile>
+			<id>cibuild</id>
+			<activation>
+				<property>
+					<name>jenkins</name>
+				</property>
+			</activation>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>nexus-dev</id>
+					<url>${jenkins.repo.snapshot}</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>io.dropwizard</groupId>
