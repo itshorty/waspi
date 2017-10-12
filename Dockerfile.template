@@ -15,6 +15,9 @@ ENV INITSYSTEM on
 RUN apt-get update \
     && apt-get install -y dnsmasq \
         wget \
+	xserver-xorg-core xserver-xorg-video-fbdev x11-xserver-utils \
+  	libgl1-mesa-dri libimlib2 \
+  	matchbox-window-manager xautomation feh \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl https://api.github.com/repos/majorz/resin-wifi-connect/releases/latest -s \
@@ -24,7 +27,7 @@ RUN curl https://api.github.com/repos/majorz/resin-wifi-connect/releases/latest 
 
 
 # Copy everything into the container
-COPY start ./
+COPY . ./
 
 COPY target/waspi-0.0.1-SNAPSHOT.jar ./
 
